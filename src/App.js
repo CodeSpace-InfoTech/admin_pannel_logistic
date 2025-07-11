@@ -8,17 +8,17 @@ import Navbar from "./Components/Navbar";
 function App() {
   return (
     <BrowserRouter>
-      <div className="flex min-h-screen">
-        <Sidebar />
-        <div className="flex-1 flex flex-col">
           <Navbar />
-          <div className="flex-1">
+        <Sidebar />
+      <div className="content-wrapper">
+        <div className="container-full">
+        
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route path="/" element={<Dashboard />} />
               <Route path="/dashboard" element={<Dashboard />} />
             </Routes>
-          </div>
+      
         </div>
       </div>
     </BrowserRouter>

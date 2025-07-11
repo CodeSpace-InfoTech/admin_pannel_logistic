@@ -1,3 +1,4 @@
+/* eslint-disable */
 /*!
  * ApexCharts v3.26.0
  * (c) 2018-2021 Juned Chhipa
@@ -30138,61 +30139,74 @@
      */
 
 
-    _createClass(ApexCharts, [{
-      key: "render",
-      value: function render() {
-        var _this = this;
+_createClass(ApexCharts, [{
+  key: "render",
+  value: function render() {
+    var _this = this;
 
-        // main method
-        return new Promise(function (resolve, reject) {
-          // only draw chart, if element found
-          if (_this.el !== null) {
-            if (typeof Apex._chartInstances === 'undefined') {
-              Apex._chartInstances = [];
-            }
+    // main method
+    return new Promise(function (resolve, reject) {
+      try {
+        // Check if element exists and is valid
+        if (!_this.el || !document.body.contains(_this.el)) {
+          throw new Error('Target element not found or not attached to DOM');
+        }
 
-            if (_this.w.config.chart.id) {
-              Apex._chartInstances.push({
-                id: _this.w.globals.chartID,
-                group: _this.w.config.chart.group,
-                chart: _this
-              });
-            } // set the locale here
+        if (typeof Apex._chartInstances === 'undefined') {
+          Apex._chartInstances = [];
+        }
 
+        if (_this.w.config.chart.id) {
+          Apex._chartInstances.push({
+            id: _this.w.globals.chartID,
+            group: _this.w.config.chart.group,
+            chart: _this
+          });
+        }
 
-            _this.setLocale(_this.w.config.chart.defaultLocale);
+        // set the locale here
+        _this.setLocale(_this.w.config.chart.defaultLocale);
 
-            var beforeMount = _this.w.config.chart.events.beforeMount;
+        var beforeMount = _this.w.config.chart.events.beforeMount;
 
-            if (typeof beforeMount === 'function') {
-              beforeMount(_this, _this.w);
-            }
+        if (typeof beforeMount === 'function') {
+          beforeMount(_this, _this.w);
+        }
 
-            _this.events.fireEvent('beforeMount', [_this, _this.w]);
+        _this.events.fireEvent('beforeMount', [_this, _this.w]);
 
-            window.addEventListener('resize', _this.windowResizeHandler);
-            window.addResizeListener(_this.el.parentNode, _this.parentResizeHandler);
+        // Add event listeners
+        window.addEventListener('resize', _this.windowResizeHandler);
+        
+        if (_this.el.parentNode) {
+          window.addResizeListener(_this.el.parentNode, _this.parentResizeHandler);
+        }
 
-            var graphData = _this.create(_this.w.config.series, {});
+        var graphData = _this.create(_this.w.config.series, {});
 
-            if (!graphData) return resolve(_this);
+        if (!graphData) {
+          throw new Error('Failed to create chart data');
+        }
 
-            _this.mount(graphData).then(function () {
-              if (typeof _this.w.config.chart.events.mounted === 'function') {
-                _this.w.config.chart.events.mounted(_this, _this.w);
-              }
-
-              _this.events.fireEvent('mounted', [_this, _this.w]);
-
-              resolve(graphData);
-            }).catch(function (e) {
-              reject(e); // handle error in case no data or element not found
-            });
-          } else {
-            reject(new Error('Element not found'));
+        _this.mount(graphData).then(function () {
+          if (typeof _this.w.config.chart.events.mounted === 'function') {
+            _this.w.config.chart.events.mounted(_this, _this.w);
           }
+
+          _this.events.fireEvent('mounted', [_this, _this.w]);
+
+          resolve(graphData);
+        }).catch(function (e) {
+          console.error('Error mounting chart:', e);
+          reject(e);
         });
+
+      } catch (error) {
+        console.error('Error rendering chart:', error);
+        reject(error);
       }
+    });
+  }
     }, {
       key: "create",
       value: function create(ser, opts) {

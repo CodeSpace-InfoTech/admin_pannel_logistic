@@ -61,7 +61,7 @@
         }
 
 /* Retina support */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+/* @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
        only screen and (-moz-min-device-pixel-ratio: 1.5),
        only screen and (-o-min-device-pixel-ratio: 3/2),
        only screen and (min-device-pixel-ratio: 1.5) {
@@ -71,7 +71,7 @@
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
-}
+} */
 
 /* red */
 .icheckbox_line-red,
@@ -135,7 +135,7 @@
         }
 
 /* Retina support */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+/* @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
        only screen and (-moz-min-device-pixel-ratio: 1.5),
        only screen and (-o-min-device-pixel-ratio: 3/2),
        only screen and (min-device-pixel-ratio: 1.5) {
@@ -145,7 +145,7 @@
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
-}
+} */
 
 /* green */
 .icheckbox_line-green,
@@ -209,7 +209,7 @@
         }
 
 /* Retina support */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+/* @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
        only screen and (-moz-min-device-pixel-ratio: 1.5),
        only screen and (-o-min-device-pixel-ratio: 3/2),
        only screen and (min-device-pixel-ratio: 1.5) {
@@ -219,7 +219,7 @@
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
-}
+} */
 
 /* blue */
 .icheckbox_line-blue,
@@ -283,7 +283,7 @@
         }
 
 /* Retina support */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+/* @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
        only screen and (-moz-min-device-pixel-ratio: 1.5),
        only screen and (-o-min-device-pixel-ratio: 3/2),
        only screen and (min-device-pixel-ratio: 1.5) {
@@ -293,7 +293,7 @@
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
-}
+} */
 
 /* aero */
 .icheckbox_line-aero,
@@ -357,7 +357,7 @@
         }
 
 /* Retina support */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+/* @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
        only screen and (-moz-min-device-pixel-ratio: 1.5),
        only screen and (-o-min-device-pixel-ratio: 3/2),
        only screen and (min-device-pixel-ratio: 1.5) {
@@ -367,7 +367,7 @@
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
-}
+} */
 
 /* grey */
 .icheckbox_line-grey,
@@ -431,7 +431,7 @@
         }
 
 /* Retina support */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+/* @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
        only screen and (-moz-min-device-pixel-ratio: 1.5),
        only screen and (-o-min-device-pixel-ratio: 3/2),
        only screen and (min-device-pixel-ratio: 1.5) {
@@ -441,7 +441,7 @@
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
-}
+} */
 
 /* orange */
 .icheckbox_line-orange,
@@ -505,7 +505,7 @@
         }
 
 /* Retina support */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+/* @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
        only screen and (-moz-min-device-pixel-ratio: 1.5),
        only screen and (-o-min-device-pixel-ratio: 3/2),
        only screen and (min-device-pixel-ratio: 1.5) {
@@ -515,7 +515,7 @@
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
-}
+} */
 
 /* yellow */
 .icheckbox_line-yellow,
@@ -579,7 +579,7 @@
         }
 
 /* Retina support */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+/* @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
        only screen and (-moz-min-device-pixel-ratio: 1.5),
        only screen and (-o-min-device-pixel-ratio: 3/2),
        only screen and (min-device-pixel-ratio: 1.5) {
@@ -589,7 +589,7 @@
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
-}
+} */
 
 /* pink */
 .icheckbox_line-pink,
@@ -653,7 +653,7 @@
         }
 
 /* Retina support */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+/* @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
        only screen and (-moz-min-device-pixel-ratio: 1.5),
        only screen and (-o-min-device-pixel-ratio: 3/2),
        only screen and (min-device-pixel-ratio: 1.5) {
@@ -663,7 +663,7 @@
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
-}
+} */
 
 /* purple */
 .icheckbox_line-purple,
@@ -727,7 +727,7 @@
         }
 
 /* Retina support */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+/* @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
        only screen and (-moz-min-device-pixel-ratio: 1.5),
        only screen and (-o-min-device-pixel-ratio: 3/2),
        only screen and (min-device-pixel-ratio: 1.5) {
@@ -737,4 +737,4 @@
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
-}
+} */

@@ -1,3 +1,5 @@
+/* eslint-disable */
+// eslint-disable-next-line no-undef
 // ProgressBar.js 1.1.0
 // https://kimmobrunfeldt.github.io/progressbar.js
 // License: MIT
