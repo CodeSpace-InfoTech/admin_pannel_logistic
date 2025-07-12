@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 const Dashboard = () => {
   return (
-    <section className="content">
+    <section className="content" style={{height:"100vh"}}>
       <div className="row">
         <div className="col-xl-3 col-lg-6 col-12">
           <div className="box">
@@ -123,7 +123,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className="col-xl-8 col-12">
+        {/* <div className="col-xl-8 col-12">
           <div className="box position-static">
             <div className="box-header">
               <h4 className="box-title">Section Overview</h4>
@@ -1848,7 +1848,7 @@ const Dashboard = () => {
               <div id="overview_trend"></div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

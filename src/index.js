@@ -12,21 +12,23 @@ import "./Assets/css/skin_color.css";
 import "./Assets/js/vendors.min.js"
 import "./Assets/js/pages/chat-popup.js"
 import "./Assets/icons/feather-icons/feather.min.js"
-import "./Assets/js/pages/chat-popup.js"
 import "./Assets/vendor_components/apexcharts-bundle/dist/apexcharts.js"
 import "./Assets/vendor_components/progressbar.js-master/dist/progressbar.js" 
 import "./Assets/vendor_components/jquery-ui/jquery-ui.js"
-import "./Assets/js/template.js"
+// import "./Assets/js/template.js"
 import "./Assets/js/pages/dashboard2.js"
 import App from "./App";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistor, store } from "./redux/store.js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <div className="wrapper" >
-
-    <App />
-
-    </div>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
+    </Provider>
   </React.StrictMode>
 );

@@ -32064,5 +32064,16 @@ img.away, img.busy, img.offline, img.online {
 /* Firefox Bug: link not triggered */
 .waves-effect .waves-ripple {
   z-index: -1; }
+.login-background {
+  background-image: url("../images/auth-bg/bg-1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+
+}
+
+/* Add overlay for better text contrast if needed */
+
 
 /*# sourceMappingURL=style.css.map */
