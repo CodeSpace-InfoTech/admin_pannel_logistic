@@ -5,14 +5,24 @@ import Login from './pages/Auth/Login';
 import Dashboard from './pages/Dashboard';
 import Sidebar from './Components/Sidebar';
 import Navbar from './Components/Navbar';
+import Customer from './pages/Customer';
+import feather from "feather-icons";
+import { useEffect } from 'react';
+import Employees from './pages/Employees';
+import Loads from './pages/Loads';
+import TimeLogs from './pages/TimeLogs';
 
 
 function App() {
   const { token } = useSelector((state) => state.auth);
+  useEffect(() => {
+    feather.replace();
+  }, []);
 
   return (
     <BrowserRouter>
       <ToastContainer />
+  
       <Routes>
         <Route path="/login" element={!token ? <Login /> : <Navigate to="/dashboard" />} />
        
@@ -28,6 +38,11 @@ function App() {
                     <Routes>
                       <Route path="/" element={<Dashboard />} />
                       <Route path="/dashboard" element={<Dashboard />} />
+                      <Route path="/customer" element={<Customer />} />
+                      <Route path="/employees" element={<Employees />} />
+                      <Route path="/time-logs" element={<TimeLogs />} />
+                      <Route path="/loads" element={<Loads />} />
+                      
                     </Routes>
                   </div>
                 </div>
@@ -37,6 +52,7 @@ function App() {
             )
           }
         />
+        
       </Routes>
     </BrowserRouter>
   );

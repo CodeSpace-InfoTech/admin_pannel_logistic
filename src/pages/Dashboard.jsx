@@ -1,6 +1,12 @@
 import React from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import feather from "feather-icons";
+
 const Dashboard = () => {
+  useEffect(() => {
+    feather.replace();
+  }, []);
   return (
     <section className="content" style={{height:"100vh"}}>
       <div className="row">

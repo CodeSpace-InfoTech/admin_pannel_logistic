@@ -1,63 +1,83 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
-import feather from 'feather-icons';
+import React from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import feather from "feather-icons";
+import Swal from "sweetalert2";
 
 const Sidebar = () => {
-    const location = useLocation();
-    
-    useEffect(() => {
-        feather.replace();
-    }, []);
+  const location = useLocation();
+  const navigate = useNavigate();
 
-    // Function to check if a link is active
-    const isActive = (path) => {
-        return location.pathname === path;
-    };
-  
-    return (
-        <aside className="main-sidebar">
-            {/* sidebar */}
-            <section className="sidebar position-relative">
-                <div className="multinav">
-                    <div className="multinav-scroll" style={{height: '100%'}}>
-                        {/* sidebar menu */}
-                        <ul className="sidebar-menu tree" data-widget="tree">
-                            <li className={`treeview ${isActive('/') ? 'active' : ''}`}>
-                                <Link to="/">
-                                    <i data-feather="monitor"></i>
-                                    <span>Dashboard</span>
-                                </Link>
-                            </li>
+  useEffect(() => {
+    feather.replace();
+  }, []);
 
-                            {/* <li className={`treeview ${location.pathname.includes('/forms') ? 'active' : ''}`}>
-                                <Link to="#">
-                                    <i data-feather="truck"></i>
-                                    <span>Forms</span>
-                                    <span className="pull-right-container">
-                                        <i className="fa fa-angle-right pull-right"></i>
-                                    </span>
-                                </Link>
-                                <ul className="treeview-menu">
-                                    <li className={isActive('/forms/elements') ? 'active' : ''}><Link to="/forms/elements"><i className="icon-Commit"><span className="path1"></span><span className="path2"></span></i>Form Elements</Link></li>
-                                    <li className={isActive('/forms/layout') ? 'active' : ''}><Link to="/forms/layout"><i className="icon-Commit"><span className="path1"></span><span className="path2"></span></i>Form Layout</Link></li>
-                                    <li className={isActive('/forms/wizard') ? 'active' : ''}><Link to="/forms/wizard"><i className="icon-Commit"><span className="path1"></span><span className="path2"></span></i>Form Wizard</Link></li>
-                                    <li className={isActive('/forms/validation') ? 'active' : ''}><Link to="/forms/validation"><i className="icon-Commit"><span className="path1"></span><span className="path2"></span></i>Form Validation</Link></li>
-                                    <li className={isActive('/forms/formatter') ? 'active' : ''}><Link to="/forms/formatter"><i className="icon-Commit"><span className="path1"></span><span className="path2"></span></i>Formatter</Link></li>
-                                    <li className={isActive('/forms/xeditable') ? 'active' : ''}><Link to="/forms/xeditable"><i className="icon-Commit"><span className="path1"></span><span className="path2"></span></i>Xeditable Editor</Link></li>
-                                    <li className={isActive('/forms/dropzone') ? 'active' : ''}><Link to="/forms/dropzone"><i className="icon-Commit"><span className="path1"></span><span className="path2"></span></i>Dropzone</Link></li>
-                                    <li className={isActive('/forms/code-editor') ? 'active' : ''}><Link to="/forms/code-editor"><i className="icon-Commit"><span className="path1"></span><span className="path2"></span></i>Code Editor</Link></li>
-                                    <li className={isActive('/forms/editor') ? 'active' : ''}><Link to="/forms/editor"><i className="icon-Commit"><span className="path1"></span><span className="path2"></span></i>Editor</Link></li>
-                                    <li className={isActive('/forms/markdown') ? 'active' : ''}><Link to="/forms/markdown"><i className="icon-Commit"><span className="path1"></span><span className="path2"></span></i>Markdown</Link></li>
-                                </ul>
-                            </li> */}
+  const handleLogout = () => {
+     Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+     if(result.isConfirmed){
+      localStorage.clear();
+      window.location.href = "/login";
+     }
+     
+      if (result.isConfirmed) {
+        Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+      }
+    });
+   
+  };
 
-                        </ul>
-                    </div>
-                </div>
-            </section>
-        </aside>
-    );
+  const navItems = [
+    { path: "/", name: "Dashboard", icon: "monitor", sequence: 1 },
+    { path: "/customer", name: "Customer", icon: "users", sequence: 2 },
+    { path: "/employees", name: "Employees", icon: "user-check", sequence: 3 },
+    { path: "/time-logs", name: "Time Logs", icon: "clock", sequence: 4 },
+    { path: "/loads", name: "Loads", icon: "truck", sequence: 5 },
+    { path: "logout", name: "Logout", icon: "log-out", sequence: 6, onClick: handleLogout }
+  ].sort((a, b) => a.sequence - b.sequence);
+
+  // Function to check if a link is active
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
+
+  return (
+    <aside className="main-sidebar">
+      <section className="sidebar position-relative">
+        <div className="multinav">
+          <div className="multinav-scroll" style={{ height: "100%" }}>
+            <ul className="sidebar-menu tree" data-widget="tree">
+              {navItems.map((item, index) => (
+                <li
+                  key={index}
+                  className={`treeview ${isActive(item.path) ? "active" : ""}`}
+                >
+                  {item.path === "logout" ? (
+                    <a onClick={item.onClick} style={{cursor: 'pointer'}}>
+                      <i data-feather={item.icon}></i>
+                      <span>{item.name}</span>
+                    </a>
+                  ) : (
+                    <Link to={item.path}>
+                      <i data-feather={item.icon}></i>
+                      <span>{item.name}</span>
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+    </aside>
+  );
 };
 
 export default Sidebar;

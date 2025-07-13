@@ -2,6 +2,10 @@ import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import authReducer from './slices/authSlice';
+import dialogReducer from './slices/dialogSlice'; 
+import employeeReducer from './slices/employees';
+import customerReducer from './slices/customer';
+import loadReducer from './slices/loadsSlice';
 
 const persistConfig = {
   key: 'root',
@@ -13,6 +17,10 @@ const persistedReducer = persistReducer(persistConfig, authReducer);
 export const store = configureStore({
   reducer: {
     auth: persistedReducer,
+    dialog: dialogReducer, 
+    employees: employeeReducer,
+    customer:customerReducer,
+    loads:loadReducer,
   },
 });
 

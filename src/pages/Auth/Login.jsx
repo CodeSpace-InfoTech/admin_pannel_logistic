@@ -19,16 +19,15 @@ const Login = () => {
 
     setLoading(true);
     try {
-      const response = await api.post('/login', {
+      const response = await api.post('/auth/login', {
         email: formData.email,
         password: formData.password,
-        rememberMe: formData.rememberMe
       });
 
       if (response.data.token) {
         dispatch(loginSuccess({ user: response.data.user, token: response.data.token }));
         toast.success('Login successful!');
-        navigate('/dashboard');
+        navigate('/');
       }
     } catch (error) {
       // Error handled by interceptor
@@ -47,7 +46,7 @@ const Login = () => {
                 <div className="bg-white rounded10 shadow-lg">
                   <div className="content-top-agile p-20 pb-0">
                     <h2 className="text-primary">Let's Get Started</h2>
-                    <p className="mb-0">Sign in to continue to Deposito.</p>
+                    <p className="mb-0">Sign in to continue.</p>
                   </div>
                   <div className="p-40">
                     <form onSubmit={handleSubmit}>

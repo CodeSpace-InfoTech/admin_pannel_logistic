@@ -1,9 +1,10 @@
 const FormInput = ({ type, name, placeholder, value, onChange, error, icon }) => (
   <div className="form-group">
     <div className="input-group mb-3">
-      <span className="input-group-text bg-transparent">
+      {icon &&   <span className="input-group-text bg-transparent">
         <i className={icon}></i>
-      </span>
+      </span> }
+    
       <input
         type={type}
         name={name}

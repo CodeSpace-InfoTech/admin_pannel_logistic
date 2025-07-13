@@ -3,11 +3,11 @@ import { store } from './store';
 import { toast } from 'react-toastify';
 
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api', // Replace with your API base URL
+  baseURL: process.env.REACT_APP_BACKEND_APP_URL, 
 });
 
 api.interceptors.request.use((config) => {
-  const token = store.getState().auth.token;
+  const token = store.getState().auth.token;  
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
