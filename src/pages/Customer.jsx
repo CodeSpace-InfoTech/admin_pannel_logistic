@@ -5,58 +5,23 @@ import { openDialog } from '../redux/slices/dialogSlice';
 import Swal from 'sweetalert2';
 import feather from "feather-icons";
 import { deleteEmployee } from '../redux/employees';
-import { getCustomers } from '../redux/customer';
+import { deleteCustomer, getCustomers } from '../redux/customer';
+import CustomerDialog from '../Components/Dialog/CustomerDialog';
 
-const customerData = [
-  {
-    id: 1,
-    name: "Jonas Alexander",
-    position: "Developer",
-    office: "San Francisco",
-    age: 30,
-    startDate: "2010/07/14",
-    salary: "$86,500"
-  },
-  {
-    id: 2,
-    name: "Shad Decker",
-    position: "Regional Director", 
-    office: "Edinburgh",
-    age: 51,
-    startDate: "2008/11/13",
-    salary: "$183,000"
-  },
-  {
-    id: 3,
-    name: "Michael Bruce",
-    position: "Javascript Developer",
-    office: "Singapore", 
-    age: 29,
-    startDate: "2011/06/27",
-    salary: "$183,000"
-  },
-  {
-    id: 4,
-    name: "Donna Snider",
-    position: "Customer Support",
-    office: "New York",
-    age: 27,
-    startDate: "2011/01/25",
-    salary: "$112,000"
-  }
-];
+
 
 const Customer = () => {
-       const {customer} = useSelector(state => state.customer);
+       const {customers} = useSelector(state => state.customer);
+       console.log('customer', customers)
     useEffect(() => {
     feather.replace();
-  }, []);
+  }, [customers]);
  const dispatch = useDispatch();
      useEffect(() => {
     
        dispatch(getCustomers())
          .then(response => {
-           console.log(response);
+           console.log("response" ,response);
            if (response) {
              // Handle the response, e.g., update the state with the fetched data
            }
@@ -68,11 +33,11 @@ const Customer = () => {
  
 
   const handleAddCustomer = () => {
-    dispatch(openDialog(null)); // Pass null for adding a new customer
+    dispatch(openDialog({ type: '', data: null })); 
   };
 
   const handleEditCustomer = (customer) => {
-    dispatch(openDialog(customer)); // Pass customer data for editing
+       dispatch(openDialog({ type: 'edit', data: customer })); 
   };
 
   const handleDeleteCustomer = (id) => {
@@ -86,7 +51,7 @@ const Customer = () => {
       confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
 
-    const response = dispatch(deleteEmployee(id)) 
+    const response = dispatch(deleteCustomer(id)) 
       if (result.isConfirmed) {
         Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
       }
@@ -140,23 +105,27 @@ const Customer = () => {
                     <thead>
                       <tr>
                         <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>Email</th>
+                        <th>company</th>
+                        <th>phone</th>
+                        <th>status</th>
+                      
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {customerData.map((customer) => (
-                        <tr key={customer.id}>
+                      {customers && customers.map((customer) => (
+                        <tr key={customer._id}>
                           <td>{customer.name}</td>
-                          <td>{customer.position}</td>
-                          <td>{customer.office}</td>
-                          <td>{customer.age}</td>
-                          <td>{customer.startDate}</td>
-                          <td>{customer.salary}</td>
+                          <td>{customer.email}</td>
+                          <td>{customer.company}</td>
+                          <td>{customer.phone}</td>
+                          <td>
+                            <span className={`badge ${customer.status === 'active' ? 'badge-success' : 'badge-danger'}`}>
+                              {customer.status}
+                            </span>
+                          </td>
+                          
                           <td>
                             <div className="d-flex justify-content-center align-items-center">
                               <button
@@ -167,7 +136,7 @@ const Customer = () => {
                               </button>
                               <button
                                 className="btn btn-outline-danger btn-sm"
-                                onClick={handleDeleteCustomer}
+                                onClick={() => handleDeleteCustomer(customer._id)}
                               >
                                 <i
                                   data-feather="trash-2"
@@ -185,6 +154,7 @@ const Customer = () => {
             </div>
           </div>
         </div>
+        <CustomerDialog />
       </section>
     </>
   );

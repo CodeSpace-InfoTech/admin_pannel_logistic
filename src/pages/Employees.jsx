@@ -9,9 +9,7 @@ import feather from "feather-icons";
 
 const Employees = () => {
       const {employees} = useSelector(state => state.employees);
-    useEffect(() => {
-      feather.replace();
-    }, []);
+ 
 
     // Re-initialize feather icons when employees data changes
     useEffect(() => {

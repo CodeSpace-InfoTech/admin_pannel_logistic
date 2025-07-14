@@ -25,7 +25,7 @@ const employeeSlice = createSlice({
       })
       // Create employee
       .addCase(createEmployee.fulfilled, (state, action) => {
-        state.employees.push(action.payload);
+        state.employees.unshift(action.payload);
       })
       // Update employee
       .addCase(updateEmployee.fulfilled, (state, action) => {

@@ -8,7 +8,7 @@ export const getCustomers = createAsyncThunk(
   'customers/getCustomers',
   async () => {
     const response = await api.get(API_URL);
-
+console.log('response', response.data.data.data)
     if(response.data.success) {
         return response.data.data.data;
     }
