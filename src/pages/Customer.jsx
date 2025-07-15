@@ -1,43 +1,60 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { openDialog } from '../redux/slices/dialogSlice';
 import Swal from 'sweetalert2';
 import feather from "feather-icons";
-import { deleteEmployee } from '../redux/employees';
 import { deleteCustomer, getCustomers } from '../redux/customer';
 import CustomerDialog from '../Components/Dialog/CustomerDialog';
-
-
+import { TablePagination, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Pagination } from '@mui/material';
+import dayjs from 'dayjs';
 
 const Customer = () => {
-       const {customers} = useSelector(state => state.customer);
-       console.log('customer', customers)
-    useEffect(() => {
+  const { customers, totalCustomers } = useSelector(state => state.customer);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  useEffect(() => {
     feather.replace();
   }, [customers]);
- const dispatch = useDispatch();
-     useEffect(() => {
-    
-       dispatch(getCustomers())
-         .then(response => {
-           console.log("response" ,response);
-           if (response) {
-             // Handle the response, e.g., update the state with the fetched data
-           }
-         })
-         .catch(error => {
-           console.error('Error fetching employees:', error);
-         });
-     }, [dispatch]);
- 
+
+  const dispatch = useDispatch();
+  const [sortBy, setSortBy] = useState('createdAt');
+  const [sortOrder, setSortOrder] = useState('desc');
+  const [search, setSearch] = useState('');
+  const [filters, setFilters] = useState({
+    status: '',
+    company: '',
+    paymentTerms: '',
+    minCredit: '',
+    maxCredit: ''
+  });
+
+  useEffect(() => {
+    dispatch(getCustomers({
+      page: page + 1,
+      limit: rowsPerPage,
+      sortBy,
+      sortOrder,
+      search,
+      ...filters
+    }))
+    .unwrap()
+    .then(response => {
+      if (!response) {
+        throw new Error('Failed to fetch customers');
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching customers:', error);
+    });
+  }, [dispatch, page, rowsPerPage, sortBy, sortOrder, search, filters]);
 
   const handleAddCustomer = () => {
-    dispatch(openDialog({ type: '', data: null })); 
+    dispatch(openDialog({ type: '', data: null }));
   };
 
   const handleEditCustomer = (customer) => {
-       dispatch(openDialog({ type: 'edit', data: customer })); 
+    dispatch(openDialog({ type: 'edit', data: customer }));
   };
 
   const handleDeleteCustomer = (id) => {
@@ -50,12 +67,20 @@ const Customer = () => {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
-
-    const response = dispatch(deleteCustomer(id)) 
       if (result.isConfirmed) {
+        dispatch(deleteCustomer(id));
         Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
       }
     });
+  };
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
   };
 
   return (
@@ -64,22 +89,6 @@ const Customer = () => {
         <div className="d-flex align-items-center">
           <div className="me-auto">
             <h4 className="page-title">Customer Tables</h4>
-            {/* <div className="d-inline-block align-items-center">
-              <nav>
-                <ol className="breadcrumb">
-                  <li className="breadcrumb-item">
-                    <Link to="#">
-                    
-                      <i data-feather="user"></i>
-                    </Link>
-                  </li>
-                
-                  <li className="breadcrumb-item active" aria-current="page">
-                    Customer Tables
-                  </li>
-                </ol>
-              </nav>
-            </div> */}
           </div>
         </div>
       </div>
@@ -87,70 +96,92 @@ const Customer = () => {
         <div className="row">
           <div className="col-12">
             <div className="box">
-              <div className="box-header d-flex justify-content-end">
+              <div className="box-header d-flex justify-content-end p-3">
                 <button
-                  type="button"
-                  className="btn btn-primary mt-10"
+                  variant="contained"
+                  color="primary"
+                          className="btn btn-primary mt-10"
                   onClick={handleAddCustomer}
                 >
                   Add Customer
                 </button>
               </div>
-              <div className="box-body">
-                <div className="table-responsive">
-                  <table
-                    id="example1"
-                    className="table table-bordered table-striped"
-                  >
-                    <thead>
-                      <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>company</th>
-                        <th>phone</th>
-                        <th>status</th>
-                      
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {customers && customers.map((customer) => (
-                        <tr key={customer._id}>
-                          <td>{customer.name}</td>
-                          <td>{customer.email}</td>
-                          <td>{customer.company}</td>
-                          <td>{customer.phone}</td>
-                          <td>
-                            <span className={`badge ${customer.status === 'active' ? 'badge-success' : 'badge-danger'}`}>
-                              {customer.status}
-                            </span>
-                          </td>
-                          
-                          <td>
-                            <div className="d-flex justify-content-center align-items-center">
-                              <button
-                                className="btn btn-outline-info btn-sm"
-                                onClick={() => handleEditCustomer(customer)}
-                              >
-                             <i data-feather="edit" className="w-3 h-3"></i>
-                              </button>
-                              <button
-                                className="btn btn-outline-danger btn-sm"
-                                onClick={() => handleDeleteCustomer(customer._id)}
-                              >
-                                <i
-                                  data-feather="trash-2"
-                                  className="w-3 h-3"
-                                ></i>
-                              </button>
-                            </div>
-                          </td>
+              <div className='box-body'>
+               
+                <div className="table-responsive ">
+                    <table
+                      id="example1"
+                      className="table table-bordered table-striped text-center"
+                    >
+                      <thead>
+                        <tr>
+                          <th className="text-center">No</th>
+                          <th className="text-center">Name</th>
+                          <th className="text-center">Email</th>
+                          <th className="text-center">Company</th>
+                          <th className="text-center">Payment Terms</th>
+                          <th className="text-center">Phone</th>
+                          <th className="text-center">Credit Limit</th>
+                          <th className="text-center">Status</th>
+                          <th className="text-center">Created Date</th>
+                          <th className="text-center">Action</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                      </thead>
+                      <tbody>
+                        {customers.map((customer, index) => (
+                          <tr key={customer._id}>
+                            <td className="text-center">{index + 1}</td>
+                            <td className="text-center text-capitalize">{customer.name}</td>
+                            <td className="text-center">{customer.email}</td>
+                            <td className="text-center text-capitalize">{customer.company}</td>
+                            <td className="text-center">{customer.paymentTerms}</td>
+                            <td className="text-center">{customer.phone}</td>
+                               <td className="text-center">
+                             
+                                {customer.creditLimit}
+                            
+                            </td>
+                            <td className="text-center">
+                              <span className={`badge ${customer.status === 'active' ? 'badge-success' : 'badge-danger'}`}>
+                                {customer.status}
+                              </span>
+                            </td>
+                            <td className='text-center'>
+{dayjs(customer.createdAt).format('DD/MM/YYYY')}
+                            </td>
+                         
+                            <td>
+                              <div className="d-flex justify-content-center align-items-center">
+                                <button
+                                  className="btn btn-outline-info btn-sm me-2"
+                                  onClick={() => handleEditCustomer(customer)}
+                                >
+                                  <i data-feather="edit" className="w-4 h-4"></i>
+                                </button>
+                                <button
+                                  className="btn btn-outline-danger btn-sm"
+                                  onClick={() => handleDeleteCustomer(customer._id)}
+                                >
+                                  <i data-feather="trash-2" className="w-4 h-4"></i>
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
               </div>
+              <TablePagination
+                component="div"
+                count={totalCustomers}
+                page={page}
+                onPageChange={handleChangePage}
+                rowsPerPage={rowsPerPage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                rowsPerPageOptions={[5, 10, 25, 50]}
+              />
+              
             </div>
           </div>
         </div>

@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import EmployeeDialog from '../Components/Dialog/EmployeeDialog';
 import { deleteEmployee, getEmployees } from '../redux/employees';
 import feather from "feather-icons";
+import dayjs from 'dayjs';
 
 const Employees = () => {
       const {employees} = useSelector(state => state.employees);
@@ -92,40 +93,50 @@ const Employees = () => {
                   <div className="table-responsive">
                     <table
                       id="example1"
-                      className="table table-bordered table-striped"
+                      className="table table-bordered table-striped text-center"
                     >
                       <thead>
                         <tr>
-                          <th>Name</th>
-                          <th>Position</th>
-                          <th>Phone</th>
-                          <th>Action</th>
+                          <th className="text-center">No.</th>
+                          <th className="text-center">Name</th>
+                          <th className="text-center">Position</th>
+                          <th className="text-center">Phone</th>
+                          <th className="text-center">Created Date</th>
+                          <th className="text-center">Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {employees.map((employee) => (
-                          <tr key={employee.id}>
-                            <td>{employee.name}</td>
-                            <td>{employee.position}</td>
-                            <td>{employee.phone}</td>
-                            <td>
-                              <div className="d-flex justify-content-center align-items-center">
-                                <button
-                                  className="btn btn-outline-info btn-sm me-2"
-                                  onClick={() => handleEditEmployee(employee)}
-                                >
-                                  <i data-feather="edit" className="w-4 h-4"></i>
-                                </button>
-                                <button
-                                  className="btn btn-outline-danger btn-sm"
-                                  onClick={() => handleDelete(employee._id)}
-                                >
-                                  <i data-feather="trash-2" className="w-4 h-4"></i>
-                                </button>
-                              </div>
-                            </td>
+                        {employees.length === 0 ? (
+                          <tr>
+                            <td colSpan="6" className="text-center">No employees found</td>
                           </tr>
-                        ))}
+                        ) : (
+                          employees.map((employee, index) => (
+                            <tr key={employee._id}>
+                              <td>{index + 1}</td>
+                              <td>{employee.name}</td>
+                              <td>{employee.position}</td>
+                              <td>{employee.phone}</td>
+                              <td>{dayjs(employee.joinedAt).format('DD/MM/YYYY')}</td>
+                              <td>
+                                <div className="d-flex justify-content-center align-items-center">
+                                  <button
+                                    className="btn btn-outline-info btn-sm me-2"
+                                    onClick={() => handleEditEmployee(employee)}
+                                  >
+                                    <i data-feather="edit" className="w-4 h-4"></i>
+                                  </button>
+                                  <button
+                                    className="btn btn-outline-danger btn-sm"
+                                    onClick={() => handleDelete(employee._id)}
+                                  >
+                                    <i data-feather="trash-2" className="w-4 h-4"></i>
+                                  </button>
+                                </div>
+                              </td>
+                            </tr>
+                          ))
+                        )}
                       </tbody>
                     </table>
                   </div>

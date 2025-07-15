@@ -5,6 +5,7 @@ const customerSlice = createSlice({
   name: 'customers',
   initialState: {
     customers: [],
+    totalCustomers: 0,
     loading: false,
     error: null,
   },
@@ -17,7 +18,8 @@ const customerSlice = createSlice({
       })
       .addCase(getCustomers.fulfilled, (state, action) => {
         state.loading = false;
-        state.customers = action.payload;
+        state.customers = action.payload.data;
+        state.totalCustomers = action.payload.total;
       })
       .addCase(getCustomers.rejected, (state, action) => {
         state.loading = false;
