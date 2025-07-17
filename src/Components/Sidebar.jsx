@@ -36,11 +36,12 @@ const Sidebar = () => {
 
   const navItems = [
     { path: "/", name: "Dashboard", icon: "monitor", sequence: 1 },
+    { path: "/users", name: "Users", icon: "user", sequence: 3 },
     { path: "/customer", name: "Customer", icon: "users", sequence: 2 },
-    { path: "/employees", name: "Employees", icon: "user-check", sequence: 3 },
-    { path: "/time-logs", name: "Time Logs", icon: "clock", sequence: 4 },
-    { path: "/loads", name: "Loads", icon: "truck", sequence: 5 },
-    { path: "logout", name: "Logout", icon: "log-out", sequence: 6, onClick: handleLogout }
+    { path: "/employees", name: "Employees", icon: "user-check", sequence: 4 },
+    { path: "/time-logs", name: "Time Logs", icon: "clock", sequence: 5 },
+    { path: "/loads", name: "Loads", icon: "truck", sequence: 6 },
+    { path: "logout", name: "Logout", icon: "log-out", sequence: 7, onClick: handleLogout }
   ].sort((a, b) => a.sequence - b.sequence);
 
   // Function to check if a link is active

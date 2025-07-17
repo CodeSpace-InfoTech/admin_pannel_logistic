@@ -6,6 +6,7 @@ import dialogReducer from './slices/dialogSlice';
 import employeeReducer from './slices/employees';
 import customerReducer from './slices/customer';
 import loadReducer from './slices/loadsSlice';
+import userReducer from './slices/userSlice';
 
 const persistConfig = {
   key: 'root',
@@ -21,6 +22,7 @@ export const store = configureStore({
     employees: employeeReducer,
     customer:customerReducer,
     loads:loadReducer,
+    users:userReducer,
   },
 });
 

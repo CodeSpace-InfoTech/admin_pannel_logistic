@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { openDialog } from '../redux/slices/dialogSlice';
 import Swal from 'sweetalert2';
 import feather from "feather-icons";
+import dayjs from 'dayjs';
 import { deleteCustomer, getCustomers } from '../redux/customer';
 import CustomerDialog from '../Components/Dialog/CustomerDialog';
 import { TablePagination, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Pagination } from '@mui/material';
-import dayjs from 'dayjs';
+import TableHeader from '../Components/TableHeader';
 
 const Customer = () => {
   const { customers, totalCustomers } = useSelector(state => state.customer);
@@ -85,13 +86,7 @@ const Customer = () => {
 
   return (
     <>
-      <div className="content-header">
-        <div className="d-flex align-items-center">
-          <div className="me-auto">
-            <h4 className="page-title">Customer Tables</h4>
-          </div>
-        </div>
-      </div>
+     <TableHeader title="Customer Tables" />
       <section className="content" style={{ height: '100vh' }}>
         <div className="row">
           <div className="col-12">

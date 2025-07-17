@@ -7,6 +7,7 @@ import EmployeeDialog from '../Components/Dialog/EmployeeDialog';
 import { deleteEmployee, getEmployees } from '../redux/employees';
 import feather from "feather-icons";
 import dayjs from 'dayjs';
+import TableHeader from '../Components/TableHeader';
 
 const Employees = () => {
       const {employees} = useSelector(state => state.employees);
@@ -69,13 +70,7 @@ const Employees = () => {
 
     return (
       <>
-        <div className="content-header">
-          <div className="d-flex align-items-center">
-            <div className="me-auto">
-              <h4 className="page-title">Employee Tables</h4>
-            </div>
-          </div>
-        </div>
+       <TableHeader title="Employee Tables" />
         <section className="content" style={{ height: '100vh' }}>
           <div className="row">
             <div className="col-12">

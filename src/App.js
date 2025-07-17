@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import Employees from './pages/Employees';
 import Loads from './pages/Loads';
 import TimeLogs from './pages/TimeLogs';
+import UserTable from './pages/UserTable';
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
                       <Route path="/employees" element={<Employees />} />
                       <Route path="/time-logs" element={<TimeLogs />} />
                       <Route path="/loads" element={<Loads />} />
+                      <Route path="/users" element={<UserTable />} />
                       
                     </Routes>
                   </div>
