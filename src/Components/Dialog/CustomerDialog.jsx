@@ -141,7 +141,7 @@ const CustomerDialog = () => {
       dispatch(updateCustomer({ id: dialogueData._id, customerData }))
         .then((response) => {
           console.log(response);
-          handleClose();
+          handleClose()
         })
         .catch((error) => {
           console.error("Error updating customer:", error);

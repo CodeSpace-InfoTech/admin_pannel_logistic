@@ -27,7 +27,7 @@ const Login = () => {
       if (response.data.token) {
         dispatch(loginSuccess({ user: response.data.user, token: response.data.token }));
         toast.success('Login successful!');
-        navigate('/user');
+        navigate('/admin');
       }
     } catch (error) {
       // Error handled by interceptor

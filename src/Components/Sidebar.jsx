@@ -35,12 +35,12 @@ const Sidebar = () => {
   };
 
   const navItems = [
-    { path: "/", name: "Dashboard", icon: "monitor", sequence: 1 },
-    { path: "/users", name: "Users", icon: "user", sequence: 3 },
-    { path: "/customer", name: "Customer", icon: "users", sequence: 2 },
-    { path: "/employees", name: "Employees", icon: "user-check", sequence: 4 },
-    { path: "/time-logs", name: "Time Logs", icon: "clock", sequence: 5 },
-    { path: "/loads", name: "Loads", icon: "truck", sequence: 6 },
+    { path: "/admin", name: "Dashboard", icon: "monitor", sequence: 1 },
+    { path: "/admin/users", name: "Users", icon: "user", sequence: 3 },
+    { path: "/admin/customer", name: "Customer", icon: "users", sequence: 2 },
+    { path: "/admin/employees", name: "Employees", icon: "user-check", sequence: 4 },
+    { path: "/admin/time-logs", name: "Time Logs", icon: "clock", sequence: 5 },
+    { path: "/admin/loads", name: "Loads", icon: "truck", sequence: 6 },
     { path: "logout", name: "Logout", icon: "log-out", sequence: 7, onClick: handleLogout }
   ].sort((a, b) => a.sequence - b.sequence);
 

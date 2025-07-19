@@ -66,79 +66,20 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {/* <div className="navbar-custom-menu r-side">
+         <div className="navbar-custom-menu r-side">
           <ul className="nav navbar-nav">
-            <li className="btn-group nav-item d-xl-inline-flex d-none">
-              <Link to="/findspace" className="waves-effect waves-light nav-link w-p100 full-screen btn-primary-light fs-18 l-h-26">
-                Find A Space
-              </Link>
-            </li>
-            <li className="btn-group nav-item d-xl-inline-flex d-none">
-              <Link to="/vendor" className="waves-effect waves-light nav-link w-p100 full-screen btn-primary-light fs-18 l-h-26">
-                Vendor
-              </Link>
-            </li>
-            <li className="btn-group nav-item d-xl-inline-flex d-none">
-              <Link to="/help" className="waves-effect waves-light nav-link w-p100 full-screen btn-primary-light fs-18 l-h-26">
-                Help
-              </Link>
-            </li>
-            <li className="btn-group nav-item d-xl-inline-flex d-none">
-              <Link to="/qa" className="waves-effect waves-light nav-link w-p100 full-screen btn-primary-light fs-18 l-h-26">
-                Q&A
-              </Link>
-            </li>
-            <li className="btn-group nav-item d-lg-inline-flex d-none">
-              <button className="waves-effect waves-light nav-link full-screen btn-warning-light flex items-center justify-center" title="Full Screen">
-                <i data-feather="maximize" className="flex items-center"></i>
-              </button>
-            </li>
+           
+          
 
-            <li className="dropdown notifications-menu">
-              <button onClick={toggleNotifications} className="waves-effect waves-light dropdown-toggle btn-info-light flex items-center justify-center" title="Notifications">
-                <i data-feather="bell" className="flex items-center"></i>
-              </button>
-              {showNotifications && (
-                <ul className="dropdown-menu animated bounceIn">
-                  <li className="header">
-                    <div className="p-20">
-                      <div className="flexbox">
-                        <div>
-                          <h4 className="mb-0 mt-0">Notifications</h4>
-                        </div>
-                        <div>
-                          <a href="#" className="text-danger">Clear All</a>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <ul className="menu sm-scrol">
-                      <li>
-                        <a href="#">
-                          <i className="fa fa-users text-info flex items-center"></i> Curabitur id eros quis nunc suscipit blandit.
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li className="footer">
-                    <a href="#">View all</a>
-                  </li>
-                </ul>
-              )}
-            </li>
+           
 
-            <li className="btn-group nav-item">
-              <button className="waves-effect full-screen waves-light btn-danger-light flex items-center justify-center" title="Setting">
-                <i data-feather="settings" className="flex items-center"></i>
-              </button>
-            </li>
+       
 
             <li className="dropdown user user-menu">
-              <button onClick={toggleUserMenu} className="waves-effect waves-light dropdown-toggle w-auto l-h-12 bg-transparent py-0 no-shadow flex items-center justify-center" title="User">
-                <img src="../images/avatar/avatar-1.png" className="avatar rounded-10 bg-primary-light h-40 w-40" alt="" />
-              </button>
-              {showUserMenu && (
+              <Link to="/admin/profile" className="waves-effect waves-light dropdown-toggle w-auto l-h-12 bg-transparent py-0 no-shadow flex items-center justify-center" title="User">
+                <img src={require("../Assets/images/avatar/avatar-1.png")} className="avatar rounded-10 bg-primary-light h-40 w-40" alt="" />
+              </Link>
+              {/* {showUserMenu && (
                 <ul className="dropdown-menu animated flipInX">
                   <li className="user-body">
                     <Link className="dropdown-item" to="/profile"><i className="ti-user text-muted me-2 flex items-center"></i> Profile</Link>
@@ -147,10 +88,10 @@ const Navbar = () => {
                     <Link className="dropdown-item" to="/login"><i className="ti-lock text-muted me-2 flex items-center"></i> Logout</Link>
                   </li>
                 </ul>
-              )}
+              )} */}
             </li>
           </ul>
-        </div> */}
+        </div> 
       </nav>
     </header>
   );

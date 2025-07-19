@@ -25,7 +25,7 @@ const loadSlice = createSlice({
       })
      
       .addCase(createLoad.fulfilled, (state, action) => {
-        state.loads.push(action.payload);
+        state.loads.unshift(action.payload);
       })
   
       .addCase(updateLoad.fulfilled, (state, action) => {

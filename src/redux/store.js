@@ -7,6 +7,7 @@ import employeeReducer from './slices/employees';
 import customerReducer from './slices/customer';
 import loadReducer from './slices/loadsSlice';
 import userReducer from './slices/userSlice';
+import adminReducer from './slices/adminSlice';
 
 const persistConfig = {
   key: 'root',
@@ -18,6 +19,7 @@ const persistedReducer = persistReducer(persistConfig, authReducer);
 export const store = configureStore({
   reducer: {
     auth: persistedReducer,
+    admin: adminReducer,
     dialog: dialogReducer, 
     employees: employeeReducer,
     customer:customerReducer,

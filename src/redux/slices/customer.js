@@ -27,7 +27,7 @@ const customerSlice = createSlice({
       })
       // Create customer
       .addCase(createCustomer.fulfilled, (state, action) => {
-        state.customers.push(action.payload);
+        state.customers.unshift(action.payload);
       })
       // Update customer
       .addCase(updateCustomer.fulfilled, (state, action) => {

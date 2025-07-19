@@ -64,3 +64,15 @@ export const deleteUser = createAsyncThunk(
     }
   }
 );
+
+
+export const forgetPassword = createAsyncThunk(
+  'users/forgetPassword',
+  async (email) => {
+    const response = await api.post(`${API_URL}/forget-password`, email);
+    if(response.data.success){
+      toast.success('Password reset link sent successfully');
+      return response.data.data.user;
+    }
+  }
+);
