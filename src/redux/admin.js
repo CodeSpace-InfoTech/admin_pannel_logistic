@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from './api';
 import { toast } from 'react-toastify';
 
-const API_URL = '/admin';
+const API_URL = '/user';
 
 // Login admin
 export const Login = createAsyncThunk(
@@ -22,7 +22,8 @@ export const GetProfile = createAsyncThunk(
   async () => {
     const response = await api.get(`${API_URL}/me`);
     if(response.data.success) {
-      return response.data.data.admin;
+      console.log('response.data', response.data)
+      return response.data.message;
     }
   }
 );

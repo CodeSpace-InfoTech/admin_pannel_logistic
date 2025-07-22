@@ -179,14 +179,7 @@ dispatch((UpdateProfile({
                                     </button>
                                 </div>
 
-                                <div className="card mb-4">
-                                    <div className="card-body">
-                                        <h6 className="card-subtitle mb-3 text-muted">Role Details</h6>
-                                        <p><strong>Role:</strong> {admin?.role?.name}</p>
-                                        <p><strong>Description:</strong> {admin?.role?.description}</p>
-                                        <p><strong>Created:</strong> {new Date(admin?.createdAt).toLocaleDateString()}</p>
-                                    </div>
-                                </div>
+                         
 
                                 <div className="card">
                                     <div className="card-body">

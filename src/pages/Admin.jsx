@@ -1,17 +1,18 @@
-import React, { useEffect } from 'react'
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import Navbar from '../Components/Navbar';
+import React, { useEffect } from "react";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import Navbar from "../Components/Navbar";
 
-import Dashboard from './Dashboard';
-import Customer from './Customer';
-import Employees from './Employees';
-import TimeLogs from './TimeLogs';
-import Loads from './Loads';
-import Profile from './Profile';
-import Sidebar from '../Components/Sidebar';
+import Dashboard from "./Dashboard";
+import Customer from "./Customer";
+import Employees from "./Employees";
+import TimeLogs from "./TimeLogs";
+import Loads from "./Loads";
+import Profile from "./Profile";
+import Sidebar from "../Components/Sidebar";
+import LoadDetails from "./LoadDetails";
 
 const Admin = () => {
-      const { pathname } = useLocation();
+  const { pathname } = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,7 +21,7 @@ const Admin = () => {
     }
   }, [pathname, navigate]);
   return (
-   <>
+    <>
       <div className="wrapper">
         <Navbar />
         <Sidebar />
@@ -33,12 +34,13 @@ const Admin = () => {
             <Route path="employees" element={<Employees />} />
             <Route path="time-logs" element={<TimeLogs />} />
             <Route path="loads" element={<Loads />} />
-     <Route path="profile" element={<Profile />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="/loads/load-details" element={<LoadDetails />} />
           </Routes>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Admin
+export default Admin;

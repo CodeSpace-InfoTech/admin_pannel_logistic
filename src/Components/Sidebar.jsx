@@ -36,7 +36,7 @@ const Sidebar = () => {
 
   const navItems = [
     { path: "/admin", name: "Dashboard", icon: "monitor", sequence: 1 },
-    { path: "/admin/users", name: "Users", icon: "user", sequence: 3 },
+    // { path: "/admin/users", name: "Users", icon: "user", sequence: 3 },
     { path: "/admin/customer", name: "Customer", icon: "users", sequence: 2 },
     { path: "/admin/employees", name: "Employees", icon: "user-check", sequence: 4 },
     { path: "/admin/time-logs", name: "Time Logs", icon: "clock", sequence: 5 },

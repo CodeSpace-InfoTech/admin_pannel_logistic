@@ -125,9 +125,9 @@ const EmployeeDialog = () => {
               placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className={`w-full rounded-lg border p-2 form-control   ${errors.name ? 'border-red-500' : ''}`}
+              className={`w-full rounded-lg border border-black p-2 form-control   ${errors.name ? 'border-danger' : ''}`}
             />
-            {errors.name && <span className="text-red-500 text-sm mt-1">{errors.name}</span>}
+            {errors.name && <span className="text-danger text-sm mt-1">{errors.name}</span>}
           </div>
           <div className="form-group">
             <label className="form-label font-medium  mb-2 block">Phone</label>
@@ -136,9 +136,9 @@ const EmployeeDialog = () => {
               placeholder="+91 8807682"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              className={`w-full rounded-lg border form-control p-2 ${errors.phone ? 'border-red-500' : ''}`}
+              className={`w-full rounded-lg border border-black form-control p-2 ${errors.phone ? 'border-danger' : ''}`}
             />
-            {errors.phone && <span className="text-red-500 text-sm mt-1">{errors.phone}</span>}
+            {errors.phone && <span className="text-danger text-sm mt-1">{errors.phone}</span>}
           </div>
           <div className="form-group">
             <label className="form-label font-medium mb-2 block">Position</label>
@@ -147,9 +147,9 @@ const EmployeeDialog = () => {
               placeholder="Position"
               value={position}
               onChange={(e) => setPosition(e.target.value)}
-              className={`w-full rounded-lg border form-control p-2 ${errors.position ? 'border-red-500' : ''}`}
+              className={`w-full rounded-lg border border-black form-control p-2 ${errors.position ? 'border-danger' : ''}`}
             />
-            {errors.position && <span className="text-red-500 text-sm mt-1">{errors.position}</span>}
+            {errors.position && <span className="text-danger text-sm mt-1">{errors.position}</span>}
           </div>
         </div>
       </DialogContent>
