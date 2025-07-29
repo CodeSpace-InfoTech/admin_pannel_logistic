@@ -94,13 +94,7 @@ const Loads = () => {
   return (
     <>
       <TableHeader title="Loads Tables" />
-      <section className="content" >
-        <div className="row">
-          <div className="col-12">
-            <div className="box">
-              <div className="box-header align-items-center d-flex justify-content-between">
-                <div>
-                <div className={`dropdown ${isDropdownOpen ? 'show' : ''}`}>
+      <section className="content" >  <div className={`dropdown ${isDropdownOpen ? 'show' : ''}`}>
                    <button 
                      className={`btn btn-rounded btn-primary dropdown-toggle ${isDropdownOpen ? 'show' : ''}`} 
                      type="button" 
@@ -129,6 +123,12 @@ const Loads = () => {
                      </Link>
                    </div>
                 </div>
+        <div className="row">
+          <div className="col-12">
+            <div className="box">
+              <div className="box-header align-items-center d-flex justify-content-between">
+                <div>
+              
                 </div>
                 <div>
               
